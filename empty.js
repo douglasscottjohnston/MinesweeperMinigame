@@ -1,0 +1,9 @@
+class empty {
+    constructor() {
+        
+    }
+
+    clicked() {
+
+    }
+}

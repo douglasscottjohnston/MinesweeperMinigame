@@ -10,6 +10,8 @@ class GameEngine {
         this.entities = [];
 
         // Information on the input
+        this.leftClick = false;
+        this.rightClick = false;
         this.click = null;
         this.mouse = null;
         this.wheel = null;
@@ -50,10 +52,11 @@ class GameEngine {
         });
 
         this.ctx.canvas.addEventListener("click", e => {
-            if (this.options.debugging) {
-                console.log("CLICK", getXandY(e));
-            }
-            this.click = getXandY(e);
+            this.leftClick = true;
+            // if (this.options.debugging) {
+            //     console.log("CLICK", getXandY(e));
+            // }
+            // this.click = getXandY(e);
         });
 
         this.ctx.canvas.addEventListener("wheel", e => {
@@ -65,15 +68,15 @@ class GameEngine {
         });
 
         this.ctx.canvas.addEventListener("contextmenu", e => {
-            if (this.options.debugging) {
-                console.log("RIGHT_CLICK", getXandY(e));
-            }
+            // if (this.options.debugging) {
+            //     console.log("RIGHT_CLICK", getXandY(e));
+            // }
             e.preventDefault(); // Prevent Context Menu
-            this.rightclick = getXandY(e);
+            this.rightClick = true;
         });
 
-        this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
-        this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
+        // this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
+        // this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
     };
 
     addEntity(entity) {
