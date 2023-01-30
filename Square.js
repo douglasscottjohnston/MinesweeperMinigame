@@ -29,6 +29,9 @@ class Square {
             } else {
                 this.image = this.object.image;
                 this.board.minelessSquares--;
+                if(this.isEmpty) {
+                    this.object.clicked();
+                }
                 console.log(this.board.minelessSquares)
             }
         } else {

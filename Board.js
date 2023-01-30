@@ -3,7 +3,7 @@ class Board {
         Object.assign(this, { game, x, y, rows, cols, numMines})
 
         this.grid = []
-        this.quards = [];
+        this.mines = []
         this.minelessSquares = this.rows * this.cols - numMines
         this.flags = numMines;
 
@@ -22,9 +22,9 @@ class Board {
             let squareClicked = this.getSquareByPX(this.game.mouse.x, this.game.mouse.y);
             if(squareClicked != null) {
                 squareClicked.square.leftClicked();
-                if(!squareClicked.square.isFlagged && squareClicked.square.isEmpty) {
-                    this.clearSurroundingEmpties(squareClicked.x, squareClicked.y);
-                }
+                // if(!squareClicked.square.isFlagged && squareClicked.square.isEmpty) {
+                //     this.clearSurroundingEmpties(squareClicked.x, squareClicked.y);
+                // }
             }
         } else if(this.game.rightClick) {
             let squareClicked = this.getSquareByPX(this.game.mouse.x, this.game.mouse.y);
@@ -52,10 +52,13 @@ class Board {
         var randx;
         var randy;
         for (let i = 0; i < this.numMines; i++) {
-            randx = Math.floor(Math.random() * this.cols);
-            randy = Math.floor(Math.random() * this.rows);
-            let square = this.grid[randy][randx];
-            this.grid[randy][randx] = new Square(this, new Mine(), square.x, square.y);
+            let quards = this.getUnusedRandQaurds();
+            let square = this.grid[quards.x][quards.y];
+            this.grid[quards.x][quards.y] = new Square(this, new Mine(), square.x, square.y);
+            this.mines.push({
+                x: quards.x,
+                y: quards.y
+            })
         }
     }
 
@@ -67,7 +70,7 @@ class Board {
                     num = this.findNumTouchingMines(i, j);
                     if(num > 0) {
                         let square = this.getSquare(i, j);
-                        this.grid[i][j] = new Square(this, new Number(num), square.x, square.y);
+                        this.grid[i][j] = new Square(this, new Number(this, num, i, j), square.x, square.y);
                     }
                 }
             }
@@ -79,7 +82,7 @@ class Board {
         let y = this.y;
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
-                this.grid[i][j] = new Square(this, new empty(), x, y);
+                this.grid[i][j] = new Square(this, new empty(this, i, j), x, y);
                 x += TILE_WIDTH;
             }
             y += TILE_HEIGHT;
@@ -96,6 +99,19 @@ class Board {
         });
 
         return count
+    }
+
+    getUnusedRandQaurds() {
+        let randx = Math.floor(Math.random() * this.cols)
+        let randy = Math.floor(Math.random() * this.rows)
+
+        for (let i = 0; i < this.mines.length; i++) {
+            if(this.mines[i].x == randx && this.mines[i].y == randy) {
+                return this.getUnusedRandQaurds();
+            }
+        }
+
+        return {x: randx, y: randy}
     }
 
     getSquare(row, col) {
@@ -122,7 +138,6 @@ class Board {
         Object.values(this.getSurroundingSquares(row, col)).forEach(s => {
             if(s.square.isEmpty && s.square.covered) {
                 s.square.leftClicked()
-                this.clearSurroundingEmpties(s.x, s.y)
             } else if(s.square.hasNumber) {
                 s.square.leftClicked()
             }
