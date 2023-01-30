@@ -41,6 +41,7 @@ class Square {
             if(this.flagBuffer == this.flagBufferLimit) {
                 this.isFlagged = true
                 this.image = ASSET_MANAGER.getAsset(SPRITES_PATH + "TileFlag.png")
+                this.board.flags--;
                 this.flagBuffer = 0
             } else {
                 this.flagBuffer++
@@ -49,6 +50,7 @@ class Square {
             if(this.unflagBuffer == this.unflagBufferLimit) {
                 this.isFlagged = false
                 this.image = ASSET_MANAGER.getAsset(SPRITES_PATH + "TileUnknown.png")
+                this.board.flags++;
                 this.unflagBuffer = 0
             } else {
                 this.unflagBuffer++

@@ -5,6 +5,7 @@ class Board {
         this.grid = []
         this.quards = [];
         this.minelessSquares = this.rows * this.cols - numMines
+        this.flags = numMines;
 
         for(let i = 0; i < this.rows; i++) {
             this.grid[i] = new Array(this.cols);
@@ -12,6 +13,7 @@ class Board {
     }
 
     update() {
+        document.getElementById("flags").innerHTML = "Flags: " + this.flags
         if(this.minelessSquares == 0) {
             win = true;
             running = false;
