@@ -4,8 +4,6 @@ class SceneManager {
         this.game.camera = this;
         this.x = 0;
 
-        this.gameOver = false;
-
         this.title = true;
         this.credits = false;
         this.level = null;
@@ -68,6 +66,13 @@ class SceneManager {
 
     draw(ctx) {
 
+    }
+
+    reload() {
+        running = true;
+        win = false;
+        gameover = false;
+        this.loadLevel(this.Dificulty);
     }
 
     getDificulty() {

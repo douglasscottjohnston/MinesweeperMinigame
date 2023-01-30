@@ -100,8 +100,8 @@ class GameEngine {
     };
 
     update() {
+        let entitiesCount = this.entities.length;
         if(running) {
-            let entitiesCount = this.entities.length;
     
             for (let i = 0; i < entitiesCount; i++) {
                 let entity = this.entities[i];
@@ -118,6 +118,15 @@ class GameEngine {
             }
 
             this.camera.update();
+        } else {
+            for (let i = 0; i < entitiesCount; i++) {
+                let entity = this.entities[i];
+    
+                if (!entity.removeFromWorld && !(entity instanceof Board)) {
+                    console.log(entity);
+                    entity.update();
+                }
+            }
         }
     };
 

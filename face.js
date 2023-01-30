@@ -5,6 +5,10 @@ class face {
     }
 
     update() {
+        if(this.clicked()) {
+            this.image = ASSET_MANAGER.getAsset(SPRITES_PATH + "faceHappy.png")
+            this.game.camera.reload();
+        }
         if(gameover) {
             this.image = ASSET_MANAGER.getAsset(SPRITES_PATH + "faceDead.png")
         } else if(win) {
@@ -14,5 +18,9 @@ class face {
 
     draw(ctx) {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+    }
+
+    clicked() {
+        return this.game.leftClick && this.game.mouse.x >= this.x && this.game.mouse.x <= this.x + this.width && this.game.mouse.y >= this.y && this.game.mouse.y <= this.y + this.height
     }
 }
