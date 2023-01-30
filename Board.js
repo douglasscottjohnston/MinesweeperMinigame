@@ -53,8 +53,8 @@ class Board {
         var randy;
         for (let i = 0; i < this.numMines; i++) {
             let quards = this.getUnusedRandQaurds();
-            let square = this.grid[quards.x][quards.y];
-            this.grid[quards.x][quards.y] = new Square(this, new Mine(), square.x, square.y);
+            let square = this.grid[quards.y][quards.x];
+            this.grid[quards.y][quards.x] = new Square(this, new Mine(), square.x, square.y);
             this.mines.push({
                 x: quards.x,
                 y: quards.y
@@ -138,7 +138,7 @@ class Board {
         Object.values(this.getSurroundingSquares(row, col)).forEach(s => {
             if(s.square.isEmpty && s.square.covered) {
                 s.square.leftClicked()
-            } else if(s.square.hasNumber) {
+            } else if(s.square.hasNumber && s.square.covered) {
                 s.square.leftClicked()
             }
         })
