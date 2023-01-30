@@ -4,10 +4,12 @@ class Mine {
     }
 
     clicked() {
-        this.explode()
+        
     }
 
     explode() {
         this.image = ASSET_MANAGER.getAsset(SPRITES_PATH + "TileExploded.png")
+        gameover = true;
+        running = false;
     }
 }

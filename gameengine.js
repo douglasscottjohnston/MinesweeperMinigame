@@ -12,8 +12,10 @@ class GameEngine {
         // Information on the input
         this.leftClick = false;
         this.rightClick = false;
-        this.click = null;
-        this.mouse = null;
+        this.mouse = {
+            x: -100,
+            y: -100
+        }
         this.wheel = null;
         this.keys = {};
 
@@ -51,12 +53,17 @@ class GameEngine {
             this.mouse = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("click", e => {
-            this.leftClick = true;
-            // if (this.options.debugging) {
-            //     console.log("CLICK", getXandY(e));
-            // }
-            // this.click = getXandY(e);
+        this.ctx.canvas.addEventListener("mousedown", e => {
+            if(e.button === 0) {
+                this.leftClick = true;
+            } else if(e.button === 2) {
+                this.rightClick = true;
+            }
+        });
+
+        this.ctx.canvas.addEventListener("mouseup", e => {
+            this.leftClick = false;
+            this.rightClick = false;
         });
 
         this.ctx.canvas.addEventListener("wheel", e => {
@@ -71,8 +78,7 @@ class GameEngine {
             // if (this.options.debugging) {
             //     console.log("RIGHT_CLICK", getXandY(e));
             // }
-            e.preventDefault(); // Prevent Context Menu
-            this.rightClick = true;
+            e.preventDefault();
         });
 
         // this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
@@ -94,20 +100,24 @@ class GameEngine {
     };
 
     update() {
-        let entitiesCount = this.entities.length;
-
-        for (let i = 0; i < entitiesCount; i++) {
-            let entity = this.entities[i];
-
-            if (!entity.removeFromWorld) {
-                entity.update();
+        if(running) {
+            let entitiesCount = this.entities.length;
+    
+            for (let i = 0; i < entitiesCount; i++) {
+                let entity = this.entities[i];
+    
+                if (!entity.removeFromWorld) {
+                    entity.update();
+                }
             }
-        }
-
-        for (let i = this.entities.length - 1; i >= 0; --i) {
-            if (this.entities[i].removeFromWorld) {
-                this.entities.splice(i, 1);
+    
+            for (let i = this.entities.length - 1; i >= 0; --i) {
+                if (this.entities[i].removeFromWorld) {
+                    this.entities.splice(i, 1);
+                }
             }
+
+            this.camera.update();
         }
     };
 
@@ -115,6 +125,8 @@ class GameEngine {
         this.clockTick = this.timer.tick();
         this.update();
         this.draw();
+        // this.leftClick = false;
+        // this.rightClick = false;
     };
 
 };
