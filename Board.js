@@ -28,8 +28,9 @@ class Board {
             }
         } else if(this.game.rightClick) {
             let squareClicked = this.getSquareByPX(this.game.mouse.x, this.game.mouse.y);
-            console.log(squareClicked)
-            squareClicked.square.rightClicked();
+            if(squareClicked != null) {
+                squareClicked.square.rightClicked();
+            }
         }
     }
 
