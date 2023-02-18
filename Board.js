@@ -22,9 +22,9 @@ class Board {
             let squareClicked = this.getSquareByPX(this.game.mouse.x, this.game.mouse.y);
             if(squareClicked != null) {
                 squareClicked.square.leftClicked();
-                // if(!squareClicked.square.isFlagged && squareClicked.square.isEmpty) {
-                //     this.clearSurroundingEmpties(squareClicked.x, squareClicked.y);
-                // }
+            }
+            if(gameover) {
+                this.endanimation(squareClicked.square)
             }
         } else if(this.game.rightClick) {
             let squareClicked = this.getSquareByPX(this.game.mouse.x, this.game.mouse.y);
@@ -42,6 +42,18 @@ class Board {
         }
     }
 
+    endanimation(start) {
+        let timing = 0
+        start.endTiming = 0
+        this.mines.forEach(mine => {
+            if(mine.s != start) {
+                timing += 0.1
+                mine.s.endTiming = timing
+                mine.s.endStart = this.game.timer.gameTime
+            }
+        })
+    }
+
     generateBoard() {
         this.generateEmptys();
         this.generateMines();
@@ -55,10 +67,12 @@ class Board {
         for (let i = 0; i < this.numMines; i++) {
             let quards = this.getUnusedRandQaurds();
             let square = this.grid[quards.y][quards.x];
-            this.grid[quards.y][quards.x] = new Square(this, new Mine(), square.x, square.y);
+            square = new Square(this, new Mine(this.game), square.x, square.y);
+            this.grid[quards.y][quards.x] = square
             this.mines.push({
                 x: quards.x,
-                y: quards.y
+                y: quards.y,
+                s: square
             })
         }
     }

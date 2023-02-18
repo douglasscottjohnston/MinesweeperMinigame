@@ -123,7 +123,6 @@ class GameEngine {
                 let entity = this.entities[i];
     
                 if (!entity.removeFromWorld && !(entity instanceof Board)) {
-                    console.log(entity);
                     entity.update();
                 }
             }

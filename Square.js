@@ -13,11 +13,18 @@ class Square {
         this.flagBuffer = 0
         this.unflagBufferLimit = 10
         this.unflagBuffer = 0
+        this.endTiming = 0
+        this.endStart = 0
     }
 
     draw(ctx) {
-        // console.log(this.image)
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+        console.log(this.board.game.timer.gameTime)
+        let isMyTurn = this.board.game.timer.gameTime >= this.endStart + this.endTiming
+        if(this.isMine && gameover && isMyTurn && !win) {
+            this.image = this.object.image
+            this.object.draw(ctx, this.x, this.y)
+        }
     }
 
     leftClicked() {

@@ -15,6 +15,7 @@ var win = false;
 // 	hard.checked = false;
 // }
 
+ASSET_MANAGER.queueDownload(SPRITES_PATH + "explosion.png");
 ASSET_MANAGER.queueDownload(SPRITES_PATH + "Tile1.png");
 ASSET_MANAGER.queueDownload(SPRITES_PATH + "Tile2.png");
 ASSET_MANAGER.queueDownload(SPRITES_PATH + "Tile3.png");
