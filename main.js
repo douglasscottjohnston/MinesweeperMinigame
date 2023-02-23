@@ -6,6 +6,18 @@ const SPRITES_PATH = "./assets/Sprites/";
 var running = true;
 var gameover = false;
 var win = false;
+let seconds = 0;
+function incrementSeconds() {
+    if(!gameover) {
+        seconds++;
+    }
+}
+console.log(seconds)
+
+function resetSeconds() {
+    seconds = 0;
+}
+
 // var easy = document.getElementById("easy");
 // var medium = document.getElementById("medium");
 // var hard = document.getElementById("hard");

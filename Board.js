@@ -14,6 +14,7 @@ class Board {
 
     update() {
         document.getElementById("flags").innerHTML = "Flags: " + this.flags
+        document.getElementById("timer").innerHTML = "Time: " + Math.floor(this.game.timer.gameTime)
         if(this.minelessSquares == 0) {
             win = true;
             running = false;

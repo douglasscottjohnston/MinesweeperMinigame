@@ -19,7 +19,6 @@ class Square {
 
     draw(ctx) {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
-        console.log(this.board.game.timer.gameTime)
         let isMyTurn = this.board.game.timer.gameTime >= this.endStart + this.endTiming
         if(this.isMine && gameover && isMyTurn && !win) {
             this.image = this.object.image

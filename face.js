@@ -8,6 +8,7 @@ class face {
         if(this.clicked()) {
             this.image = ASSET_MANAGER.getAsset(SPRITES_PATH + "faceHappy.png")
             this.game.camera.reload();
+            this.game.timer.gameTime = 0;
         }
         if(gameover) {
             this.image = ASSET_MANAGER.getAsset(SPRITES_PATH + "faceDead.png")

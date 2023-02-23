@@ -40,14 +40,15 @@ class SceneManager {
     loadLevel(dificulty) {
 
         this.clearEntities();
-
+        
         this.Board = new Board(this.game, dificulty.x, dificulty.y, dificulty.rows, dificulty.cols, dificulty.mines);
-
+        
         this.Board.generateBoard();
-
+        
         this.game.addEntity(this.Board)
-
+        
         this.game.addEntity(new face(this.game, 500, 45, 50, 50))
+        this.game.timer.gameTime = 0;
     };
 
     update() {
