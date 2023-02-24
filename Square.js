@@ -38,7 +38,6 @@ class Square {
                 if(this.isEmpty) {
                     this.object.clicked();
                 }
-                console.log(this.board.minelessSquares)
             }
         } else {
             this.object.clicked();

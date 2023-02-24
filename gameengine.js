@@ -12,6 +12,7 @@ class GameEngine {
         // Information on the input
         this.leftClick = false;
         this.rightClick = false;
+        this.ctrl = false;
         this.mouse = {
             x: -100,
             y: -100
@@ -53,13 +54,20 @@ class GameEngine {
             this.mouse = getXandY(e);
         });
 
+        this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
+        this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
+
         this.ctx.canvas.addEventListener("mousedown", e => {
-            if(e.button === 0) {
+            console.log(this.keys['Control'])
+            if(e.button === 0 && this.keys['Control']) {
+                this.rightClick = true;
+            } else if(e.button === 0) {
                 this.leftClick = true;
             } else if(e.button === 2) {
                 this.rightClick = true;
             }
         });
+
 
         this.ctx.canvas.addEventListener("mouseup", e => {
             this.leftClick = false;
@@ -81,8 +89,6 @@ class GameEngine {
             e.preventDefault();
         });
 
-        // this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
-        // this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
     };
 
     addEntity(entity) {
