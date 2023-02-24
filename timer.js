@@ -13,7 +13,9 @@ class Timer {
         this.lastTimestamp = current;
 
         const gameDelta = Math.min(delta, this.maxStep);
-        this.gameTime += gameDelta;
+        if(firstSquareBroken) {
+            this.gameTime += gameDelta;
+        }
         return gameDelta;
     };
 };

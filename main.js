@@ -6,6 +6,7 @@ const SPRITES_PATH = "./assets/Sprites/";
 var running = true;
 var gameover = false;
 var win = false;
+var firstSquareBroken = false;
 let seconds = 0;
 function incrementSeconds() {
     if(!gameover) {

@@ -48,13 +48,17 @@ class SceneManager {
         this.game.addEntity(this.Board)
         
         this.game.addEntity(new face(this.game, 500, 45, 50, 50))
+        showHighScore(dificulty);
         this.game.timer.gameTime = 0;
     };
 
     update() {
         if(this.Dificulty != this.getDificulty()) {
             this.Dificulty = this.getDificulty();
-            this.loadLevel(this.Dificulty)
+            this.reload();
+        } else if(win) {
+            setHighScore(this.Dificulty, this.game.timer.gameTime);
+            showHighScore(this.Dificulty);
         }
     };
 
@@ -73,7 +77,9 @@ class SceneManager {
         running = true;
         win = false;
         gameover = false;
+        firstSquareBroken = false;
         this.loadLevel(this.Dificulty);
+        setHighScore(this.Dificulty)
     }
 
     getDificulty() {

@@ -6,6 +6,7 @@ class Board {
         this.mines = []
         this.minelessSquares = this.rows * this.cols - numMines
         this.flags = numMines;
+        
 
         for(let i = 0; i < this.rows; i++) {
             this.grid[i] = new Array(this.cols);
@@ -23,6 +24,7 @@ class Board {
             let squareClicked = this.getSquareByPX(this.game.mouse.x, this.game.mouse.y);
             if(squareClicked != null) {
                 squareClicked.square.leftClicked();
+                firstSquareBroken = true;
             }
             if(gameover) {
                 this.endanimation(squareClicked.square)

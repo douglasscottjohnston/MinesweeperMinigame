@@ -3,6 +3,7 @@ var selectDificulty = {
 }
 
 var easy = {
+    score: 'easyHighScore',
     rows: 8,
     cols: 8,
     mines: 10,
@@ -11,6 +12,7 @@ var easy = {
 }
 
 var medium = {
+    score: 'mediumHighScore',
     rows: 16,
     cols: 16,
     mines: 40,
@@ -19,6 +21,7 @@ var medium = {
 }
 
 var hard = {
+    score: 'hardHighScore',
     rows: 16,
     cols: 30,
     mines: 99,
