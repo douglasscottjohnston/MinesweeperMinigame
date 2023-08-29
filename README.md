@@ -5,7 +5,7 @@ Play Minesweeper in Javascript
 I made this for a school project. It's a recreation of Microsoft's classic Minesweeper game in javascript
 
 ## How to Play
-Click [here](https://douglasscottjohnston.github.io/MinesweeperMinigame/) or go to https://douglasscottjohnston.github.io/MinesweeperMinigame/\
+Click [here](https://douglasscottjohnston.github.io/MinesweeperMinigame/) or go to https://douglasscottjohnston.github.io/MinesweeperMinigame/ \
 Left-click on the tiles to reveal them\
 Right-click or hold CTRL and Left-click on tiles to flag them for mines\
 If you flag every mine around a number tile, click the number to reveal all of the unflagged tiles around the number tile, just make sure all of your flags are correct or else you'll lose\
