@@ -2,7 +2,7 @@
 Play Minesweeper in Javascript
 
 ## Description
-I made this for a school project. It's a recreation of Microsoft's classic Minesweeper game in javascript
+I made this for a school project. It's a recreation of Microsoft's classic Minesweeper game in JavaScript
 
 ## How to Play
 Click [here](https://douglasscottjohnston.github.io/MinesweeperMinigame/) or go to https://douglasscottjohnston.github.io/MinesweeperMinigame/ \
